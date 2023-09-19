@@ -1,13 +1,16 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import CodeEditor from './components/CodeEditor';
 import { fonts, themes } from './options';
 import useStore from './store';
+import { cn } from './lib/utils';
 
 function App() {
   const theme = useStore((state) => state.theme);
   const padding = useStore((state) => state.padding);
   const fontStyle = useStore((state) => state.fontStyle);
   const showBackground = useStore((state) => state.showBackground);
+
+  const editorRef = useRef(null);
 
   return (
     <main className='dark min-h-screen flex justify-center items-center bg-neutral-950 text-white'>
@@ -22,7 +25,16 @@ function App() {
         crossOrigin='anonymous'
       />
 
-      <CodeEditor />
+      <div
+        className={cn(
+          'overflow-hidden mb-2 transition-all ease-out',
+          showBackground ? themes[theme].background : 'ring ring-neutral-900'
+        )}
+        style={{ padding }}
+        ref={editorRef}
+      >
+        <CodeEditor />
+      </div>
     </main>
   );
 }
