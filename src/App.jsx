@@ -9,6 +9,7 @@ import ThemeSelect from './components/controls/ThemeSelect';
 import LanguageSelect from './components/controls/LanguageSelect';
 import FontSelect from './components/controls/FontSelect';
 import FontSizeInput from './components/controls/FontSizeInput';
+import PaddingSlider from './components/controls/PaddingSlider';
 
 function App() {
   const theme = useStore((state) => state.theme);
@@ -64,6 +65,8 @@ function App() {
           <LanguageSelect />
           <FontSelect />
           <FontSizeInput />
+          <PaddingSlider />
+          <BackgroundSwitch />
           <div className='w-px bg-neutral-800' />
           <div className='place-self-center'>
             <ExportOptions targetRef={editorRef} />
