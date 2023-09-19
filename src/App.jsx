@@ -7,6 +7,7 @@ import { Card, CardContent } from './components/ui/card';
 import ExportOptions from './components/controls/ExportOptions';
 import ThemeSelect from './components/controls/ThemeSelect';
 import LanguageSelect from './components/controls/LanguageSelect';
+import FontSelect from './components/controls/FontSelect';
 
 function App() {
   const theme = useStore((state) => state.theme);
@@ -60,6 +61,7 @@ function App() {
         <CardContent className='flex flex-wrap gap-6 p-0'>
           <ThemeSelect />
           <LanguageSelect />
+          <FontSelect />
           <div className='w-px bg-neutral-800' />
           <div className='place-self-center'>
             <ExportOptions targetRef={editorRef} />
