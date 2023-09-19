@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import CodeEditor from './components/CodeEditor';
 import { fonts, themes } from './options';
 import useStore from './store';
@@ -13,6 +13,22 @@ function App() {
   const showBackground = useStore((state) => state.showBackground);
 
   const editorRef = useRef(null);
+
+
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+    if (queryParams.size === 0) return;
+    const state = Object.fromEntries(queryParams);
+
+    useStore.setState({
+      ...state,
+      code: state.code ? atob(state.code) : '',
+      autoDetectLanguage: state.autoDetectLanguage === 'true',
+      darkMode: state.darkMode === 'true',
+      fontSize: Number(state.fontSize || 18),
+      padding: Number(state.padding || 64),
+    });
+  }, []);
 
   return (
     <main className='dark min-h-screen flex justify-center items-center bg-neutral-950 text-white'>
