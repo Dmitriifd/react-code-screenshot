@@ -6,6 +6,7 @@ import { cn } from './lib/utils';
 import { Card, CardContent } from './components/ui/card';
 import ExportOptions from './components/controls/ExportOptions';
 import ThemeSelect from './components/controls/ThemeSelect';
+import LanguageSelect from './components/controls/LanguageSelect';
 
 function App() {
   const theme = useStore((state) => state.theme);
@@ -58,6 +59,7 @@ function App() {
       <Card className='fixed bottom-16 py-6 px-8 mx-6 bg-neutral-900/90 backdrop-blur'>
         <CardContent className='flex flex-wrap gap-6 p-0'>
           <ThemeSelect />
+          <LanguageSelect />
           <div className='w-px bg-neutral-800' />
           <div className='place-self-center'>
             <ExportOptions targetRef={editorRef} />
