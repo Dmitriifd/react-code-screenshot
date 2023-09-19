@@ -1,13 +1,12 @@
 import { useState } from 'react';
-import { Button } from './components/ui/button';
+import CodeEditor from './components/CodeEditor';
 
 function App() {
-  const [count, setCount] = useState(0);
 
   return (
-    <>
-      <Button>Hell</Button>
-    </>
+    <main className='dark min-h-screen flex justify-center items-center bg-neutral-950 text-white'>
+      <CodeEditor />
+    </main>
   );
 }
 
