@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import CodeEditor from './components/CodeEditor';
 import { fonts, themes } from './options';
 import useStore from './store';
@@ -12,8 +12,15 @@ import FontSizeInput from './components/controls/FontSizeInput';
 import PaddingSlider from './components/controls/PaddingSlider';
 import BackgroundSwitch from './components/controls/BackgroundSwitch';
 import DarkModeSwitch from './components/controls/DarkModeSwitch';
+import { Resizable } from 're-resizable';
+import WidthMeasurement from './components/WidthMeasurement';
+import { Button } from './components/ui/button';
+import { ResetIcon } from '@radix-ui/react-icons';
 
 function App() {
+  const [width, setWidth] = useState('auto');
+  const [showWidth, setShowWidth] = useState(false);
+
   const theme = useStore((state) => state.theme);
   const padding = useStore((state) => state.padding);
   const fontStyle = useStore((state) => state.fontStyle);
@@ -50,16 +57,39 @@ function App() {
         crossOrigin='anonymous'
       />
 
-      <div
-        className={cn(
-          'overflow-hidden mb-2 transition-all ease-out',
-          showBackground ? themes[theme].background : 'ring ring-neutral-900'
-        )}
-        style={{ padding }}
-        ref={editorRef}
+      <Resizable
+        enable={{ left: true, right: true }}
+        minWidth={padding * 2 + 400}
+        size={{ width }}
+        onResize={(e, dir, ref) => setWidth(ref.offsetWidth)}
+        onResizeStart={() => setShowWidth(true)}
+        onResizeStop={() => setShowWidth(false)}
       >
-        <CodeEditor />
-      </div>
+        <div
+          className={cn(
+            'overflow-hidden mb-2 transition-all ease-out',
+            showBackground ? themes[theme].background : 'ring ring-neutral-900'
+          )}
+          style={{ padding }}
+          ref={editorRef}
+        >
+          <CodeEditor />
+        </div>
+        <WidthMeasurement showWidth={showWidth} width={width} />
+        <div
+          className={cn(
+            'transition-opacity w-fit mx-auto -mt-4',
+            showWidth || width === 'auto'
+              ? 'invisible opacity-0'
+              : 'visible opacity-100'
+          )}
+        >
+          <Button size='sm' onClick={() => setWidth('auto')} variant='ghost'>
+            <ResetIcon className='mr-2' />
+            Reset width
+          </Button>
+        </div>
+      </Resizable>
 
       <Card className='fixed bottom-16 py-6 px-8 mx-6 bg-neutral-900/90 backdrop-blur'>
         <CardContent className='flex flex-wrap gap-6 p-0'>
