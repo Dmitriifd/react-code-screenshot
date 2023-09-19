@@ -8,7 +8,7 @@ const useStore = create(
       theme: 'hyper',
       darkMode: true,
       showBackground: true,
-      language: 'plaintext',
+      language: 'js',
       autoDetectLanguage: false,
       fontSize: 18,
       fontStyle: 'jetBrainsMono',
