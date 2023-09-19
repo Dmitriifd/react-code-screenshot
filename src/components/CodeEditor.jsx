@@ -23,6 +23,7 @@ export default function CodeEditor() {
       });
     }
   }, [store.autoDetectLanguage, store.code]);
+  
   return (
     <div
       className={cn(
