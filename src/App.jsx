@@ -8,6 +8,7 @@ import ExportOptions from './components/controls/ExportOptions';
 import ThemeSelect from './components/controls/ThemeSelect';
 import LanguageSelect from './components/controls/LanguageSelect';
 import FontSelect from './components/controls/FontSelect';
+import FontSizeInput from './components/controls/FontSizeInput';
 
 function App() {
   const theme = useStore((state) => state.theme);
@@ -62,6 +63,7 @@ function App() {
           <ThemeSelect />
           <LanguageSelect />
           <FontSelect />
+          <FontSizeInput />
           <div className='w-px bg-neutral-800' />
           <div className='place-self-center'>
             <ExportOptions targetRef={editorRef} />
