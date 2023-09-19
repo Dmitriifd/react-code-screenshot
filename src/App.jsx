@@ -10,6 +10,8 @@ import LanguageSelect from './components/controls/LanguageSelect';
 import FontSelect from './components/controls/FontSelect';
 import FontSizeInput from './components/controls/FontSizeInput';
 import PaddingSlider from './components/controls/PaddingSlider';
+import BackgroundSwitch from './components/controls/BackgroundSwitch';
+import DarkModeSwitch from './components/controls/DarkModeSwitch';
 
 function App() {
   const theme = useStore((state) => state.theme);
@@ -67,6 +69,7 @@ function App() {
           <FontSizeInput />
           <PaddingSlider />
           <BackgroundSwitch />
+          <DarkModeSwitch />
           <div className='w-px bg-neutral-800' />
           <div className='place-self-center'>
             <ExportOptions targetRef={editorRef} />
